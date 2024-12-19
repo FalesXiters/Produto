@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fales Xiters</title>
+  <style>
+    /* Configurações Globais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Banner de Alerta */
+    .alert {
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      animation: slideDown 0.5s ease;
+    }
+
+    @keyframes slideDown {
+      0% {
+        top: -50px;
+      }
+      100% {
+        top: 0;
+      }
+    }
+
+    /* Títulos */
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    /* Produto */
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .product img {
+      flex: 1 1 40%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+    .product-details {
+      flex: 1 1 55%;
+    }
+    .product-title {
+      font-size: 20px;
+      color: #222;
+      margin-bottom: 8px;
+    }
+    .product-description {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 18px;
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    /* Garantia */
+    .guarantee {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 4px solid #27ae60;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .guarantee img {
+      width: 60px;
+      height: auto;
+      margin-right: 15px;
+    }
+    .guarantee-text {
+      font-size: 14px;
+      color: #444;
+    }
+
+    /* Formulário */
+    form {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    /* Botão */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: #27ae60;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background: #1e8b4d;
+    }
+
+    /* Rodapé */
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 10px;
+      font-size: 12px;
+      color: #888;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <!-- Banner de Alerta -->
+  <div class="alert">Oferta Especial! Não perca essa oportunidade!</div>
+
+  <div class="container">
+    <h1>Fales Xiters</h1>
+    <div class="product">
+      <img src="https://i.ibb.co/WpThwmM/20241218-165812-0000.png" alt="Produto Fales Xiters">
+      <div class="product-details">
+        <h2 class="product-title">Xit Exclusivo da Fales Xiters</h2>
+        <p class="product-description">
+          Adquira nosso Xit totalmente anti ban e anti lista negra!
+        </p>
+        <p class="product-price">Apenas R$ 25,00</p>
+      </div>
+    </div>
+    <div class="guarantee">
+      <img src="https://i.ibb.co/z2LWHDY/3f02fae7b7a2147a4fbc73d51b664ff4-removebg-preview.png" alt="Garantia de 7 Dias">
+      <p class="guarantee-text">
+        <strong>Garantia de 7 Dias:</strong> Caso não esteja satisfeito, devolvemos seu dinheiro sem complicações!
+      </p>
+    </div>
+    <form action="checkout.html" method="GET">
+      <label for="name">Nome Completo</label>
+      <input type="text" id="name" name="name" placeholder="Digite seu nome completo" required>
+      
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+      
+      <label for="phone">Número de Telefone</label>
+      <input type="tel" id="phone" name="phone" placeholder="Digite seu número de telefone" required>
+      
+      <button type="submit" class="btn">Comprar Agora</button>
+    </form>
+  </div>
+  <footer>
+    &copy; 2024 Fales Xiters. Todos os direitos reservados.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirme o pagamento</title>
+  <style>
+    /* Configurações Globais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;  /* Fundo branco para a tela inteira */
+      color: #333; /* Cor do texto padrão */
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #ffffff; /* Fundo branco para a área principal */
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Títulos */
+    h1 {
+      text-align: center;
+      font-size: 30px; /* Tamanho do texto menor */
+      font-weight: bold;
+      position: relative;
+      background: linear-gradient(45deg, #27ae60, #2c3e50); /* Verde claro e preto */
+      background-size: 400% 400%; /* Para expandir o gradiente */
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradient-animation 4s ease infinite; /* Animação contínua */
+    }
+
+    @keyframes gradient-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Detalhes */
+    .details {
+      font-size: 14px;
+      color: #333; /* Texto claro dentro da área escura */
+      margin-bottom: 15px;
+      border: 1px solid #a5d6a7; /* Borda verde claro */
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .details p {
+      margin: 5px 0;
+    }
+
+    /* Total */
+    .total {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      margin: 15px 0;
+      color: #27ae60;
+    }
+
+    /* QR Code */
+    .qr-code-container {
+      text-align: center;
+      margin-top: 15px;
+      border: 1px solid #a5d6a7; /* Borda verde claro */
+      padding: 10px;
+      border-radius: 6px;
+    }
+    .qr-code-container img {
+      max-width: 150px;
+      height: auto;
+      margin: 10px 0;
+    }
+    .pix-code-container {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .pix-code {
+      background: #f4f4f9;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #333;
+      word-break: break-word;
+      margin-top: 10px;
+      display: inline-block;
+      border: 1px solid #a5d6a7; /* Borda verde claro */
+    }
+
+    /* Botões */
+    .btn {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #1e8b4d;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      text-align: center;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .copy-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Notificação */
+    .notification {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 20px;
+      color: #333; /* Texto escuro */
+      font-size: 14px;
+      border-radius: 8px;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      text-align: center;
+      background-color: #ffffff; /* Fundo claro */
+      width: 250px;
+      border: 2px solid #27ae60; /* Borda verde */
+      box-shadow: 0 0 8px rgba(39, 174, 96, 0.5); /* Reflexo verde */
+    }
+
+    /* Tutorial */
+    .tutorial {
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #a5d6a7; /* Borda verde claro */
+      display: none; /* Inicialmente oculto */
+    }
+    .tutorial p {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .tutorial h2 {
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .tutorial-btn {
+      cursor: pointer;
+      color: #3498db;
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 15px;
+      text-decoration: underline;
+    }
+
+    /* Mensagem do produto enviado por e-mail */
+    .email-message {
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      margin-top: 15px;
+      border: 1px solid #a5d6a7; /* Borda verde claro */
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    /* Rodapé */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Confirme o pagamento</h1>
+    <div class="details">
+      <p><strong>Nome:</strong> <span id="name"></span></p>
+      <p><strong>E-mail:</strong> <span id="email"></span></p>
+      <p><strong>Telefone:</strong> <span id="phone"></span></p>
+    </div>
+    <div class="total">Total a pagar: R$ 25,00</div>
+    <div class="qr-code-container">
+      <h2>Pagamento Pix</h2>
+      <img id="qrCode" alt="QR Code Pix">
+      <div class="pix-code-container">
+        <div class="pix-code" id="pixCode"></div>
+        <button class="copy-btn" onclick="copyPixCode()">Copiar</button>
+      </div>
+      <a href="index.html" class="btn">Voltar para a Tela Inicial</a>
+    </div>
+
+    <!-- Botão para exibir o tutorial -->
+    <div class="tutorial-btn" onclick="toggleTutorial()">Clique para ver o tutorial</div>
+
+    <!-- Tutorial -->
+    <div class="tutorial">
+      <h2>Como realizar o pagamento</h2>
+      <p><strong>Passo 1:</strong> Abra o aplicativo do seu banco ou carteira digital (como PicPay, Mercado Pago, etc.) no seu celular.</p>
+      <p><strong>Passo 2:</strong> Escolha a opção de pagamento por <strong>Pix</strong> no menu do aplicativo.</p>
+      <p><strong>Passo 3:</strong> Para pagar usando o <strong>QR Code</strong>, selecione a opção de escanear o QR Code no seu aplicativo e aponte para o QR Code exibido acima.</p>
+      <p><strong>Passo 4:</strong> Caso prefira usar o código <strong>Copie e Cole</strong>, copie o código Pix abaixo. No seu aplicativo bancário, selecione a opção "Copiar e Colar", cole o código Pix na área destinada e confirme os dados.</p>
+      <p><strong>Passo 5:</strong> Após a confirmação do pagamento, você verá uma notificação de sucesso. Aguardamos a confirmação do pagamento.</p>
+      <p><strong>Observação:</strong> O pagamento será processado em segundos, mas pode levar alguns minutos para refletir dependendo do seu banco.</p>
+    </div>
+
+    <!-- Mensagem sobre o envio do produto -->
+    <div class="email-message">
+      <p>O produto será enviado para o e-mail fornecido após a confirmação do pagamento.</p>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+      <p>2024 Todos os direitos reservados</p>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script>
+    // Recebe os dados do formulário via URL
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById("name").textContent = urlParams.get("name");
+    document.getElementById("email").textContent = urlParams.get("email");
+    document.getElementById("phone").textContent = urlParams.get("phone");
+
+    // Código Pix fornecido
+    const pixCode = "00020126580014BR.GOV.BCB.PIX0136efb2c370-8cc6-4668-912a-f8dbf8a1e00c5204000053039865802BR5925Antonio Gabriel da Concei6009SAO PAULO61080540900062150511FalesXiters63045333";
+
+    // Gera o QR Code e exibe o código Pix
+    QRCode.toDataURL(pixCode, { width: 150 }, (err, url) => {
+      if (!err) {
+        document.getElementById("qrCode").src = url;
+      } else {
+        console.error("Erro ao gerar o QR Code:", err);
+      }
+    });
+
+    document.getElementById("pixCode").textContent = pixCode;
+
+    // Função para copiar o código Pix
+    function copyPixCode() {
+      navigator.clipboard.writeText(pixCode).then(() => {
+        showNotification("Código Pix copiado para a área de transferência!");
+      }).catch(() => {
+        showNotification("Erro ao copiar o código Pix.", true);
+      });
+    }
+
+    // Função para exibir uma notificação
+    function showNotification(message, isError = false) {
+      const notification = document.getElementById("notification");
+      notification.textContent = message;
+      notification.style.display = "block";
+      notification.style.backgroundColor = isError ? "#ff6b6b" : "#ffffff";  // Fundo branco
+      notification.style.color = "#333"; // Texto escuro
+      notification.style.borderColor = isError ? "#ff6b6b" : "#27ae60";  // Borda verde para sucesso, vermelha para erro
+      notification.style.boxShadow = isError ? "0 0 8px rgba(255, 107, 107, 0.5)" : "0 0 8px rgba(39, 174, 96, 0.5)";  // Reflexo da borda
+
+      setTimeout(() => {
+        notification.style.display = "none";
+      }, 3000);
+    }
+
+    // Função para mostrar ou esconder o tutorial
+    function toggleTutorial() {
+      const tutorial = document.querySelector(".tutorial");
+      const tutorialBtn = document.querySelector(".tutorial-btn");
+
+      if (tutorial.style.display === 'block') {
+        tutorial.style.display = 'none';
+        tutorialBtn.textContent = 'Clique para ver o tutorial';
+      } else {
+        tutorial.style.display = 'block';
+        tutorialBtn.textContent = 'Clique para ocultar o tutorial';
+      }
+    }
+  </script>
+</body>
+</html>
